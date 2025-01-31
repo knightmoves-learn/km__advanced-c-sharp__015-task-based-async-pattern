@@ -59,7 +59,7 @@ In `HomeEnergyApi/Program.cs`
 ```
 - The properties on the pre-defined types `ZipLocationResponse` and `Place` contain some, but not all of the properties in the response from the given API. This allows the serialization from the JSON response to objects in our code. Although you can omit properties, you must preserve the original structure and property names from the JSON you receive for properties you do include. 
     - Properties like `post code` and `place name` are not valid variable/property names in C#, which is why we add the tag specifying the name further (eg. `[JsonPropertyName("post code")]`)
-- `using` statements for the assignment have been pre-written for you, however in the future you may need to add these yourself.
+- So far in this course, `using` statements for in `HomeEnergyApi` have been pre-provided for you, remember in the future you may need to add these yourself depending on the dependencies your projects have.
 
 ## Building toward CSTA Standards:
 - Decompose problems into smaller components through systematic analysis, using constructs such as procedures, modules, and/or objects. (3A-AP-17) https://www.csteachers.org/page/standards
