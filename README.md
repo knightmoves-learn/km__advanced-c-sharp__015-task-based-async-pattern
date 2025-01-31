@@ -26,6 +26,7 @@ In `HomeEnergyApi/Services/ZipLocationService.cs`
 
 In `HomeEnergyApi/Controllers/HomeAdminController.cs`
 - Create a private property on `HomeAdminController` of type `ZipCodeLocationService` amd titled `zipCodeLocationService`
+    - Add an argument to `HomeAdminController`'s constructor of type `ZipCodeLocationService` and assign its value to this proprety.
 - Create a new HTTP Post method `ZipLocation()`
     - This method should be accessable from the relative route `Location/{zipCode}` (full route: `Homes/admin/Location/{zipCode}`)
         - `{zipCode}` should be a route parameter on the route `Location/` of type `int`

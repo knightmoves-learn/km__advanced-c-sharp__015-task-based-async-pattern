@@ -9,12 +9,10 @@ namespace HomeEnergyApi.Controllers
     public class HomeAdminController : ControllerBase
     {
         private IWriteRepository<int, Home> repository;
-        private ZipCodeLocationService zipCodeLocationService;
 
-        public HomeAdminController(IWriteRepository<int, Home> repository, ZipCodeLocationService zipCodeLocationService)
+        public HomeAdminController(IWriteRepository<int, Home> repository)
         {
             this.repository = repository;
-            this.zipCodeLocationService = zipCodeLocationService;
         }
 
         [HttpPost]
@@ -44,13 +42,6 @@ namespace HomeEnergyApi.Controllers
             }
             var home = repository.RemoveById(id);
             return Ok(home);
-        }
-
-        [HttpPost("Location/{zipCode}")]
-        public async Task<IActionResult> ZipLocation([FromRoute] int zipCode)
-        {
-            Place place = await zipCodeLocationService.Report(zipCode);
-            return Ok(place);
         }
     }
 }
