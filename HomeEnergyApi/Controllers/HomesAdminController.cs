@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using HomeEnergyApi.Models;
 using HomeEnergyApi.Services;
+using System.Threading.Tasks;
 
 namespace HomeEnergyApi.Controllers
 {
@@ -10,9 +11,12 @@ namespace HomeEnergyApi.Controllers
     {
         private IWriteRepository<int, Home> repository;
 
-        public HomeAdminController(IWriteRepository<int, Home> repository)
+        private ZipCodeLocationService zipCodeLocationService;
+
+        public HomeAdminController(IWriteRepository<int, Home> repository, ZipCodeLocationService zipCodeLocationService)
         {
             this.repository = repository;
+            this.zipCodeLocationService = zipCodeLocationService;
         }
 
         [HttpPost]
@@ -20,6 +24,13 @@ namespace HomeEnergyApi.Controllers
         {
             repository.Save(home);
             return Created($"/Homes/{repository.Count() - 1}", home);
+        }
+
+        [HttpPost("Location/{zipCode}")]
+        public IActionResult ZipLocation(int zipCode)
+        {
+            Place place = zipCodeLocationService.Report(zipCode);
+            return Ok(place);
         }
 
         [HttpPut("{id}")]

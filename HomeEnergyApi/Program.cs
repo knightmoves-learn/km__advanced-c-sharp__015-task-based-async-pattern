@@ -9,6 +9,8 @@ builder.Services.AddControllers();
 builder.Services.AddSingleton<HomeRepository>();
 builder.Services.AddSingleton<IReadRepository<int, Home>>(provider => provider.GetRequiredService<HomeRepository>());
 builder.Services.AddSingleton<IWriteRepository<int, Home>>(provider => provider.GetRequiredService<HomeRepository>());
+builder.Services.AddTransient<ZipCodeLocationService>();
+builder.Services.AddHttpClient<ZipCodeLocationService>();
 
 
 var app = builder.Build();
