@@ -29,7 +29,7 @@ namespace HomeEnergyApi.Controllers
         [HttpPost("Location/{zipCode}")]
         public IActionResult ZipLocation(int zipCode)
         {
-            Place place = zipCodeLocationService.Report(zipCode);
+            Place place = zipCodeLocationService.Report(zipCode).Result;
             return Ok(place);
         }
 
